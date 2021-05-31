@@ -19,11 +19,12 @@ const FeedBackButtons = ({goodOnClick,neutralOnClick,badOnClick}) => {
   )
 } 
 
-const Statistic = ({text, value}) => {
+const Statistic = ({text, value, after}) => {
   return(
-    <>
-      {text} {value}
-    </>
+    <tr>
+      <td>{text}</td>
+      <td>{value} {after}</td>
+    </tr>
   )
 }
 
@@ -36,23 +37,27 @@ const Statistics = ({good,neutral,bad}) => {
   if(good > 0 & bad >0)
   {
     return(
-      <p>
-        <Statistic text="good" value={good}/><br></br>
-        <Statistic text="neutral" value={neutral}/><br></br>
-        <Statistic text="bad" value={bad}/><br></br>
-        <Statistic text="total" value={total}/><br></br>
-        <Statistic text="average" value={(good-bad)/total}/><br></br>
-        <Statistic text="positive" value={(good/total)*100}/>%
-      </p>
+      <table>
+        <tbody>
+          <Statistic text="good" value={good}/>
+          <Statistic text="neutral" value={neutral}/>
+          <Statistic text="bad" value={bad}/>
+          <Statistic text="total" value={total}/>
+          <Statistic text="average" value={(good-bad)/total}/>
+          <Statistic text="positive" value={(good/total)*100} after='%'/>
+        </tbody>
+      </table>
     )
   }
   return(
-    <p>
-      <Statistic text="good" value={good}/><br></br>
-      <Statistic text="neutral" value={neutral}/><br></br>
-      <Statistic text="bad" value={bad}/><br></br>
-      <Statistic text="total" value={total}/><br></br>
-    </p>
+    <table>
+      <tbody>
+        <Statistic text="good" value={good}/>
+        <Statistic text="neutral" value={neutral}/>
+        <Statistic text="bad" value={bad}/>
+        <Statistic text="total" value={total}/>
+      </tbody>
+    </table>
   )
 }
 const App = () => {
