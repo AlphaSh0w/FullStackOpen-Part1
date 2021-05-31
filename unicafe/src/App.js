@@ -20,11 +20,15 @@ const FeedBackButtons = ({goodOnClick,neutralOnClick,badOnClick}) => {
 } 
 
 const Statistics = ({good,neutral,bad}) => {
+  const total = good+neutral+bad
   return(
     <p>
       good {good}<br></br>
       neutral {neutral}<br></br>
       bad {bad}<br></br>
+      total {total}<br></br>
+      average {(good-bad)/total}<br></br>
+      positive {(good/total)*100}%
     </p>
   )
 }
