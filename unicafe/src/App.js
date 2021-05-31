@@ -19,16 +19,39 @@ const FeedBackButtons = ({goodOnClick,neutralOnClick,badOnClick}) => {
   )
 } 
 
+const Statistic = ({text, value}) => {
+  return(
+    <>
+      {text} {value}
+    </>
+  )
+}
+
 const Statistics = ({good,neutral,bad}) => {
   const total = good+neutral+bad
+  if(good === 0 & neutral === 0 & bad === 0)
+  {
+    return(<p>No feedback given</p>)
+  }
+  if(good > 0 & bad >0)
+  {
+    return(
+      <p>
+        <Statistic text="good" value={good}/><br></br>
+        <Statistic text="neutral" value={neutral}/><br></br>
+        <Statistic text="bad" value={bad}/><br></br>
+        <Statistic text="total" value={total}/><br></br>
+        <Statistic text="average" value={(good-bad)/total}/><br></br>
+        <Statistic text="positive" value={(good/total)*100}/>%
+      </p>
+    )
+  }
   return(
     <p>
-      good {good}<br></br>
-      neutral {neutral}<br></br>
-      bad {bad}<br></br>
-      total {total}<br></br>
-      average {(good-bad)/total}<br></br>
-      positive {(good/total)*100}%
+      <Statistic text="good" value={good}/><br></br>
+      <Statistic text="neutral" value={neutral}/><br></br>
+      <Statistic text="bad" value={bad}/><br></br>
+      <Statistic text="total" value={total}/><br></br>
     </p>
   )
 }
